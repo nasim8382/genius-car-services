@@ -1,0 +1,15 @@
+.service {
+    border: 1px solid gray;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.service img {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.service button {
+    margin-bottom: 20px;
+    border: none;
+}
