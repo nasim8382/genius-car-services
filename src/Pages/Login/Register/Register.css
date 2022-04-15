@@ -1,0 +1,37 @@
+.register-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.register-form input {
+    display: block;
+}
+
+.register-form label {
+    color: purple;
+    margin: 20px 0;
+}
+
+.input-field {
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.input-field:hover {
+    background-color: rgb(235, 235, 235);
+    transition: 0.5s;
+}
+
+.submit-input {
+    height: 50px;
+    width: 50%;
+    margin: 40px auto;
+    border-radius: 5px 10px;
+}
+
+.submit-input:hover{
+    background-color: antiquewhite;
+    transition: 0.5s;
+}
