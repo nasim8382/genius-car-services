@@ -3,8 +3,12 @@ import { Button, Form } from "react-bootstrap";
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate, useLocation  } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -39,12 +43,17 @@ const Login = () => {
 
     const resetPassword = async() => {
         const email = emailRef.current.value;
-        await sendPasswordResetEmail(email);
-        alert('Sent email');
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else{
+            toast('please enter your email address');
+        }
     }
 
-    if (loading) {
-        loadingText = <p className='text-center text-primary'>Loading...</p>;
+    if (loading || sending) {
+        return <Loading></Loading>
     }
 
     if (error) {
@@ -57,6 +66,7 @@ const Login = () => {
 
     return (
         <div className="container mx-auto login-section">
+            <PageTitle title="Login"></PageTitle>
             <h2 className="text-primary text-center mt-3">Please Login</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-2" controlId="formBasicEmail">
@@ -73,7 +83,6 @@ const Login = () => {
                     Login
                 </Button>
             </Form>
-            {loadingText}
             {errorElement}
             <p className="mt-1 text-center">New to Genius Car?
                 <span onClick={navigateRegister} className="text-primary register"> Please Register</span>
@@ -84,6 +93,7 @@ const Login = () => {
                 <span onClick={resetPassword} className="text-primary register"> Reset Password</span>
             </p>
             <SocialLogin></SocialLogin>
+            <ToastContainer />
         </div>
     );
 };

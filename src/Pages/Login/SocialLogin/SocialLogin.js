@@ -6,6 +6,7 @@ import facebook from '../../../images/social/facebook.png';
 import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -14,14 +15,13 @@ const SocialLogin = () => {
     const navigate = useNavigate();
 
     let errorElement;
-    let loadingText;
 
     if (error || error1 || error2) {
         errorElement =  <p className='text-center text-danger'>Error: {error?.message} {error1?.message} {error2?.message}</p>
     }
 
     if (loading || loading1 || loading2) {
-        loadingText = <p className='text-center text-primary'>Loading...</p>;
+        return <Loading></Loading>
     }
 
     if (user || user1 || user2) {
@@ -35,7 +35,6 @@ const SocialLogin = () => {
                     <p className='mx-3 mt-2'>or</p>
                 <div className='straight-line'></div>
             </div>
-            {loadingText}
             {errorElement}
             <div>
                 <button className='google-sign-in-btn'
