@@ -18,7 +18,6 @@ const Login = () => {
 
     let from = location.state?.from?.pathname || "/";
     let errorElement;
-    let loadingText;
 
     const [
         signInWithEmailAndPassword,
@@ -45,10 +44,10 @@ const Login = () => {
         const email = emailRef.current.value;
         if (email) {
             await sendPasswordResetEmail(email);
-            toast('Sent email');
+            toast.success('Sent email');
         }
         else{
-            toast('please enter your email address');
+            toast.error('please enter your email address');
         }
     }
 

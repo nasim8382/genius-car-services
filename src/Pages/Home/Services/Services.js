@@ -7,7 +7,7 @@ const Services = () => {
     const [services, setServices] = useState([]);
 
     useEffect( () => {
-        axios.get('services.json')
+        axios.get('http://localhost:5000/service')
         .then(data => setServices(data.data));
     }, [])
 
@@ -17,7 +17,7 @@ const Services = () => {
             <div className='services'>
                 {
                     services.map(service => <Service
-                        key={service.id}
+                        key={service._id}
                         service={service}
                     ></Service>)
                 }
